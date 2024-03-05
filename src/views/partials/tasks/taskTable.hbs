@@ -1,0 +1,48 @@
+{{#if tasks}}
+<table class="table overflow-hidden rounded-3 table-hover table-dark">
+    <thead>
+        <tr>
+            <th>N#</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        
+    {{!-- Sintaxis for each para recorrer el array que le pasamos anteriormente en index routes como parametro del render --}}
+    {{#each tasks}}
+    <tr>
+        <td>{{@index}}</td>
+        <td>{{title}}</td>
+        <td>{{description}}</td>
+        <td>
+            <a href="/edit/{{_id}}"class="btn btn-primary btn-sm">Editar <ion-icon name="create"></ion-icon></a>
+
+            <a href="/delete/{{_id}}"class="btn btn-danger btn-sm">Eliminar <ion-icon name="close"></ion-icon></a>
+            
+
+            {{!--Sintaxis vemos si done true, se muestra el uncompletar
+        
+            luego si tarea false, se muestra completar--}}
+            {{#if done}}
+                <a href="/handleDone/{{_id}}" class="btn btn-light btn-sm">Descompletar <ion-icon name="arrow-undo"></ion-icon></a>
+            {{else}}
+                <a href="/handleDone/{{_id}}" class="btn btn-success btn-sm">Completar <ion-icon name="checkmark-done-outline"></ion-icon></a>
+            {{/if}}
+        </td>
+    </tr>  
+    
+    {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+<div class="text-center mt-4">
+        <h1 class="text-white">No hay registros actualmente</h1>
+        <div class="container mx-auto">
+              <img src="/imgs/nota.png" alt="" id="notaimg"srcset="">
+        </div>
+      
+    </div>
+{{/if}}
